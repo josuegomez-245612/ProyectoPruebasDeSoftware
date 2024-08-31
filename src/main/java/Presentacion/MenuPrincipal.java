@@ -55,7 +55,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 70, 750, -1));
 
-        ImagenMenuPrincipal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Presentacion/taskify_Principal.png"))); // NOI18N
+        ImagenMenuPrincipal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/taskify_Principal.png"))); // NOI18N
         jPanel1.add(ImagenMenuPrincipal, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
