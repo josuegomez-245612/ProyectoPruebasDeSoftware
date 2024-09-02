@@ -3,6 +3,7 @@ package Presentacion;
 import Negocio.TareaValidaciones;
 import Persistencia.Tarea;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -55,6 +56,7 @@ originalPanel = jPanel1; // Guarda la referencia del panel original
 
         jPanel1 = new javax.swing.JPanel();
         btnSalir = new javax.swing.JButton();
+        btnEliminar = new javax.swing.JButton();
         btnAgregar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
@@ -66,6 +68,14 @@ originalPanel = jPanel1; // Guarda la referencia del panel original
 
         btnSalir.setText("Salir");
         jPanel1.add(btnSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 10, -1, -1));
+
+        btnEliminar.setText("Eliminar tarea seleccionada");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 530, 190, -1));
 
         btnAgregar.setText("Agregar tareas");
         btnAgregar.addActionListener(new java.awt.event.ActionListener() {
@@ -105,12 +115,21 @@ originalPanel = jPanel1; // Guarda la referencia del panel original
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
         PanelAgregarTarea panelAgregarTarea = new PanelAgregarTarea(tVa, this);
         cambiarPanel(panelAgregarTarea);
     }//GEN-LAST:event_btnAgregarActionPerformed
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        // TODO add your handling code here:
+        int row = jTable1.getSelectedRow();
+        tVa.eliminarTarea((String) jTable1.getValueAt(row, 0));
+        actualizarTablaTareas();
+        
+    }//GEN-LAST:event_btnEliminarActionPerformed
     public static DefaultTableModel crearModelo(List<Tarea> listaTareas) {
 
         String[] columnas = {"Nombre", "Fecha"};
@@ -144,6 +163,7 @@ originalPanel = jPanel1; // Guarda la referencia del panel original
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel ImagenMenuPrincipal;
     private javax.swing.JButton btnAgregar;
+    private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnSalir;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;

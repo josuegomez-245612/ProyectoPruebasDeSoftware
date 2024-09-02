@@ -82,7 +82,8 @@ private MenuPrincipal menuPrincipal;
                     .addComponent(lblFecha)
                     .addComponent(spinnerFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnGuardar)
-                    .addComponent(btnVolver)))
+                    .addComponent(btnVolver))
+                .addContainerGap(262, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -98,7 +99,8 @@ private MenuPrincipal menuPrincipal;
                 .addGap(30, 30, 30)
                 .addComponent(btnGuardar)
                 .addGap(33, 33, 33)
-                .addComponent(btnVolver))
+                .addComponent(btnVolver)
+                .addContainerGap(194, Short.MAX_VALUE))
         );
 
         JSpinner.DateEditor dateEditor = new JSpinner.DateEditor(spinnerFecha, "dd/MM/yyyy");
