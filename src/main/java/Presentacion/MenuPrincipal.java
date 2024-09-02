@@ -1,10 +1,13 @@
-
 package Presentacion;
 
 import Negocio.TareaValidaciones;
 import Persistencia.Tarea;
 import java.text.SimpleDateFormat;
 import java.util.List;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JSpinner;
+import javax.swing.SpinnerDateModel;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -12,13 +15,33 @@ import javax.swing.table.DefaultTableModel;
  * @author JOSUE GOMEZ
  */
 public class MenuPrincipal extends javax.swing.JFrame {
-TareaValidaciones tVa = new TareaValidaciones();
-    
+ private JPanel originalPanel;
+    TareaValidaciones tVa = new TareaValidaciones();
+
     public MenuPrincipal() {
         initComponents();
-            DefaultTableModel modelo = crearModelo(tVa.obtenerTodasLasTareas());
-jTable1.setModel(modelo);
-        
+        setupSpinner();
+        DefaultTableModel modelo = crearModelo(tVa.obtenerTodasLasTareas());
+        jTable1.setModel(modelo);
+originalPanel = jPanel1; // Guarda la referencia del panel original
+    }
+    public JPanel getOriginalPanel() {
+
+        return originalPanel;
+    }
+
+    private void setupSpinner() {
+        // Crear y configurar el JLabel para la fecha
+        JLabel lblFecha = new JLabel("Fecha:");
+
+        // Crear y configurar el JSpinner para la fecha
+        JSpinner spinnerFecha = new JSpinner(new SpinnerDateModel());
+        JSpinner.DateEditor dateEditor = new JSpinner.DateEditor(spinnerFecha, "dd/MM/yyyy");
+        spinnerFecha.setEditor(dateEditor);
+
+        // Añadir JLabel y JSpinner al panel
+        jPanel1.add(lblFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 530, -1, -1));  // Ajusta la posición según sea necesario
+        jPanel1.add(spinnerFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 530, 120, 30)); // Ajusta la posición según sea necesario
     }
 
     /**
@@ -44,7 +67,12 @@ jTable1.setModel(modelo);
         btnSalir.setText("Salir");
         jPanel1.add(btnSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 10, -1, -1));
 
-        btnAgregar.setText("Agregar tarea");
+        btnAgregar.setText("Agregar tareas");
+        btnAgregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarActionPerformed(evt);
+            }
+        });
         jPanel1.add(btnAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 530, -1, -1));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -78,17 +106,19 @@ jTable1.setModel(modelo);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-  public static DefaultTableModel crearModelo(List<Tarea> listaTareas) {
-    
-        String[] columnas = {"Nombre", "Fecha"};
-        
-       
-        DefaultTableModel modelo = new DefaultTableModel(columnas, 0);
 
+    private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
+        PanelAgregarTarea panelAgregarTarea = new PanelAgregarTarea(tVa, this);
+        cambiarPanel(panelAgregarTarea);
+    }//GEN-LAST:event_btnAgregarActionPerformed
+    public static DefaultTableModel crearModelo(List<Tarea> listaTareas) {
+
+        String[] columnas = {"Nombre", "Fecha"};
+
+        DefaultTableModel modelo = new DefaultTableModel(columnas, 0);
 
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 
-       
         for (Tarea tarea : listaTareas) {
             String nombre = tarea.getNombre();
             String fecha = sdf.format(tarea.getFecha());
@@ -96,9 +126,20 @@ jTable1.setModel(modelo);
             modelo.addRow(fila);
         }
 
-    return modelo;
+        return modelo;
     }
-  
+
+    public void cambiarPanel(JPanel panel) {
+        setContentPane(panel);
+        invalidate();
+        validate();
+    }
+
+    public void actualizarTablaTareas() {
+        DefaultTableModel modelo = crearModelo(tVa.obtenerTodasLasTareas());
+        jTable1.setModel(modelo);
+    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel ImagenMenuPrincipal;

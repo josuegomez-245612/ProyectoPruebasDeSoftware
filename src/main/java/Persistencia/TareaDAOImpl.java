@@ -18,7 +18,7 @@ public class TareaDAOImpl implements TareaDAO{
     @Override
     public void crearTarea(Tarea tarea) {
       
-        tareas.add(t);
+        //tareas.add(t);
         tareas.add(tarea);
     }
 
@@ -34,7 +34,7 @@ public class TareaDAOImpl implements TareaDAO{
 
     @Override
     public List<Tarea> obtenerTodasLasTareas() {
-         tareas.add(t);
+         //tareas.add(t);
         return new ArrayList<>(tareas); 
     }
 
