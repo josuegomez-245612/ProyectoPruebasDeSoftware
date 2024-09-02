@@ -18,4 +18,5 @@ public interface TareaValidacionesInt {
     List<Tarea> obtenerTodasLasTareas();
     void actualizarTarea(String nombre, Date nuevaFecha);
     void eliminarTarea(String nombre);
+    void editarTarea(String nombre, String nuevoNombre, Date nuevaFecha);
 }

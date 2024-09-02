@@ -16,4 +16,5 @@ public interface TareaDAO {
     List<Tarea> obtenerTodasLasTareas();
     void actualizarTarea(Tarea tarea);
     void eliminarTarea(String nombre);
+  void editarTarea(Tarea tarea);
 }

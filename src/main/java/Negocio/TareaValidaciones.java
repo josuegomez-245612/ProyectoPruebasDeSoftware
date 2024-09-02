@@ -57,4 +57,17 @@ public class TareaValidaciones implements TareaValidacionesInt {
             throw new IllegalArgumentException("No se encontró una tarea con ese nombre.");
         }
     }
+
+    @Override
+    public void editarTarea(String nombre, String nuevoNombre, Date nuevaFecha) {
+        Tarea tarea = tareaDAO.obtenerTareaPorNombre(nombre);
+        tarea.setNombre(nuevoNombre);
+        tarea.setFecha(nuevaFecha);
+        tareaDAO.editarTarea(tarea);
+    }
+
+   
+    
+    
+    
 }

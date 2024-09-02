@@ -53,5 +53,14 @@ public class TareaDAOImpl implements TareaDAO{
             tareas.remove(tarea);
         }
     }
-    
+
+    @Override
+    public void editarTarea(Tarea tarea) {
+        Tarea tareaExistente = obtenerTareaPorNombre(tarea.getNombre());
+        if (tareaExistente != null) {
+            tareaExistente.setNombre(tarea.getNombre());
+            tareaExistente.setFecha(tarea.getFecha());
+        }
+    }
+
 }
